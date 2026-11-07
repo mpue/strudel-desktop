@@ -1,86 +1,88 @@
 # Strudel Desktop
 
-[Strudel](https://strudel.cc) als lokale Desktop-App. Die Engine, der Editor, Hydra und alle Oberflächen laufen ohne Internet.
+[Strudel](https://strudel.cc) as a local desktop app. The engine, the editor, Hydra and every part of the interface work without an internet connection.
 
-## Starten
+The app's interface is currently in German.
+
+## Getting started
 
 ```bash
 npm install
 npm start
 ```
 
-Installierbare Pakete (AppImage und .deb) landen nach `npm run dist` in `release/`.
+After `npm run dist`, installable packages (AppImage and .deb) are in `release/`.
 
-### Ubuntu 24.04 und neuer
+### Ubuntu 24.04 and later
 
-Ubuntu schränkt die Sandbox von Electron per AppArmor ein. `npm start` bricht dann mit „The SUID sandbox helper binary was found, but is not configured correctly“ ab.
+Ubuntu restricts Electron's sandbox through AppArmor. `npm start` then aborts with "The SUID sandbox helper binary was found, but is not configured correctly".
 
-Das `.deb` bringt ein passendes AppArmor-Profil mit und ist der einfachste Weg:
+The `.deb` ships a matching AppArmor profile and is the easiest way around this:
 
 ```bash
 sudo apt install ./release/strudel-desktop_0.2.0_amd64.deb
 ```
 
-Für `npm start` aus dem Projektordner muss die Sandbox-Datei root gehören. Das ist nach jedem `npm install` erneut nötig:
+To run `npm start` from the project folder, the sandbox binary must be owned by root. This has to be repeated after every `npm install`:
 
 ```bash
 sudo chown root:root node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 node_modules/electron/dist/chrome-sandbox
 ```
 
-`--no-sandbox` ist keine gute Lösung, weil die App beliebigen Pattern-Code ausführt, auch eingefügten.
+`--no-sandbox` is not a good fix, because the app executes arbitrary pattern code, including pasted code.
 
-## Was drin ist
+## Features
 
-**Code-Unterstützung**
-- Vervollständigung je nach Kontext: Funktionen und Methoden, Sounds in `s("")`, Drum-Maschinen in `.bank("")`, Tonleitern in `.scale("")`, Akkorde in `chord("")`, Voicing-Modi, eigene Variablen
-- Doku beim Überfahren einer Funktion, mit Beispielen zum direkten Anhören; bei Sounds Infos und Vorhören
-- Parameterhilfe beim Tippen in den Klammern
-- Prüfung beim Tippen: JS-Syntax, Mini-Notation, unbekannte Sounds, Bänke, Funktionen und Methoden, mit Korrekturvorschlag per Klick
-- Laufzeitfehler in Fehlerleiste und Code
-- Einfärbung der Mini-Notation in Strings, Hervorhebung aktiver Noten beim Abspielen, Inline-Regler und -Visualisierungen
-- Funktionsreferenz mit Suche über alle 451 dokumentierten Funktionen; `F1` öffnet sie zum Wort unter dem Cursor
+**Coding help**
+- Context-aware completion: functions and methods, sounds in `s("")`, drum machines in `.bank("")`, scales in `.scale("")`, chords in `chord("")`, voicing modes, your own variables
+- Documentation on hover, with examples you can play right away; sounds show info and a preview
+- Parameter hints while typing inside the parentheses
+- Checks as you type: JS syntax, mini-notation, unknown sounds, banks, functions and methods, with one-click fix suggestions
+- Runtime errors shown in the error bar and in the code
+- Mini-notation highlighting inside strings, highlighting of active notes during playback, inline sliders and visualizations
+- Function reference with search across all 451 documented functions; `F1` opens it for the word under the cursor
 
-Die Funktionstexte stammen aus der Strudel-Doku und sind englisch.
+Function descriptions come from the Strudel documentation.
 
-**KI-Vorschläge** (lokal über [Ollama](https://ollama.com), wie Copilot)
-- Grauer Vorschlag beim Tippen. Ein Kommentar wie `// 4/4 beat with bassdrum` ergibt den Code in der Zeile darunter, auch auf Deutsch; außerdem Vervollständigung mitten in Ketten und Mini-Notation
-- Jeder Vorschlag läuft durch die Prüfung oben. Unbekannte Sounds oder Methoden und Syntaxfehler werden dem Modell einmal zurückgemeldet, danach verworfen
-- Server und Modell stehen in den Einstellungen, ohne Eintrag wird `http://127.0.0.1:11434` und das erste Code-Modell benutzt. Der Code geht nur an diesen Server
-- Nennt der Kommentar ein Genre (Techno, Drum & Bass, Lo-Fi …), dient die passende Vorlage dem Modell als Muster
+**AI suggestions** (local via [Ollama](https://ollama.com), similar to Copilot)
+- Grey inline suggestion while typing. A comment such as `// 4/4 beat with bassdrum` produces the code on the line below, in other languages too; it also completes inside method chains and mini-notation
+- Every suggestion goes through the checks above. Unknown sounds or methods and syntax errors are reported back to the model once, then the suggestion is discarded
+- Server and model are set in the settings. If left empty, `http://127.0.0.1:11434` and the first code model are used. Your code is only sent to that server
+- If the comment names a genre (techno, drum & bass, lo-fi …), the matching template is given to the model as an example
 
 **Samples**
-- Browser mit Suche, Kategorien, Favoriten, Wellenform und Varianten; Klick hört an, Doppelklick oder Ziehen fügt in den Code ein
-- Fest enthalten: Uzu-Drumkit, Salamander-Klavier, TR-808, TR-909, alle Synths
-- Optional: Tidal Drum Machines, Dirt-Samples, Mridangam, VCSL, GM-Soundfonts; als ganzes Paket oder automatisch beim ersten Abspielen
-- Eigene Ordner: Unterordner werden zu Sounds, Dateien zu Varianten
-- Weitere Pakete über `github:nutzer/repo` mit `strudel.json`
+- Browser with search, categories, favourites, waveform and variants; click to preview, double-click or drag to insert into the code
+- Bundled: Uzu drum kit, Salamander piano, TR-808, TR-909, all synths
+- Optional: Tidal Drum Machines, Dirt-Samples, Mridangam, VCSL, GM soundfonts; download as a full pack or automatically on first play
+- Your own folders: subfolders become sounds, files become variants
+- More packs via `github:user/repo` with a `strudel.json`
 
-**Vorlagen**: 25 Stücke von House bis Hydra, 16 Bausteine, eigene Vorlagen sichern.
+**Templates**: 25 pieces from house to Hydra, 16 building blocks, save your own templates.
 
-**Projekte**: Bibliothek im Dokumente-Ordner unter `Strudel`, Dateien öffnen und speichern, Entwurf übersteht Neustarts, WAV-Export.
+**Projects**: library in the Documents folder under `Strudel`, open and save files, drafts survive restarts, WAV export.
 
-## Tasten
+## Keyboard shortcuts
 
-| Taste | Aktion |
+| Key | Action |
 | --- | --- |
-| Strg+Enter | Abspielen / Änderungen übernehmen |
-| Strg+. | Stopp |
-| Strg+Leertaste | Vervollständigung öffnen |
-| F1 | Doku zum Wort unter dem Cursor |
-| Tab / Esc | KI-Vorschlag übernehmen / verwerfen (bei offener Vervollständigungsliste gehört Tab der Liste) |
-| Strg+→ | Nächstes Wort des KI-Vorschlags übernehmen |
-| Strg+Umschalt+Leertaste | KI-Vorschlag sofort anfordern |
-| Strg+S / Strg+O / Strg+N | Speichern / Öffnen / Neu |
-| Strg+E | Als WAV exportieren |
-| Strg+1 bis 4, Strg+, | Samples, Vorlagen, Referenz, Projekte, Einstellungen |
-| Strg+B / Strg+J | Seitenleiste / Konsole |
+| Ctrl+Enter | Play / apply changes |
+| Ctrl+. | Stop |
+| Ctrl+Space | Open completion |
+| F1 | Documentation for the word under the cursor |
+| Tab / Esc | Accept / dismiss AI suggestion (while the completion list is open, Tab belongs to the list) |
+| Ctrl+→ | Accept the next word of the AI suggestion |
+| Ctrl+Shift+Space | Request an AI suggestion now |
+| Ctrl+S / Ctrl+O / Ctrl+N | Save / Open / New |
+| Ctrl+E | Export as WAV |
+| Ctrl+1 to 4, Ctrl+, | Samples, Templates, Reference, Projects, Settings |
+| Ctrl+B / Ctrl+J | Sidebar / Console |
 
-## Wo die Daten liegen
+## Where data is stored
 
-- Heruntergeladene Samples: `~/.config/Strudel Desktop/samples` (Linux)
-- Projekte: Dokumente-Ordner unter `Strudel`, im Projekte-Panel änderbar
+- Downloaded samples: `~/.config/Strudel Desktop/samples` (Linux)
+- Projects: Documents folder under `Strudel`, can be changed in the Projects panel
 
-## Entwicklung
+## Development
 
 ```bash
 npm test
@@ -90,8 +92,8 @@ npm run test:assist-live
 npm run prepare-data
 ```
 
-`npm test` führt Vorlagen, Code-Hilfen, Audio, Export und Download in der echten App aus und legt Screenshots in `tests/output/` ab. `npm run test:offline` wiederholt den Kern bei gesperrter Namensauflösung. `npm run test:assist` prüft die KI-Vorschläge mit echten Tastendrücken gegen einen Ersatz-Server, `npm run test:assist-live` gegen das laufende Ollama. `npm run prepare-data` holt Sample-Maps, Basis-Samples und Doku neu, zum Beispiel nach einem Strudel-Update.
+`npm test` runs templates, coding help, audio, export and downloads in the real app and saves screenshots to `tests/output/`. `npm run test:offline` repeats the core checks with name resolution blocked. `npm run test:assist` tests the AI suggestions with real key presses against a stub server, `npm run test:assist-live` against a running Ollama. `npm run prepare-data` fetches sample maps, base samples and documentation again, for example after a Strudel update.
 
-## Lizenz
+## License
 
-AGPL-3.0-or-later, weil die App auf Strudel aufbaut. Wer sie weitergibt, muss den Quellcode mitliefern. Die Sample-Pakete haben eigene Lizenzen, die im Paket-Dialog stehen.
+AGPL-3.0-or-later, because the app is built on Strudel. If you distribute it, you must also provide the source code. The sample packs have their own licenses, which are listed in the packs dialog.
