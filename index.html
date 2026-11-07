@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' strudel-samples: data: blob:; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob: data:; style-src 'self' 'unsafe-inline'; connect-src * data: blob: strudel-samples:; img-src * data: blob:; media-src * data: blob: strudel-samples:; font-src 'self' data:; worker-src 'self' blob: data:"
+    />
+    <title>Strudel Desktop</title>
+  </head>
+  <body>
+    <div id="app">
+      <header id="topbar">
+        <div class="brand">Strudel <span>Desktop</span></div>
+        <div class="transport">
+          <button id="btn-play" class="btn-primary" title="Abspielen / Aktualisieren (Strg+Enter)">▶ Abspielen</button>
+          <button id="btn-stop" title="Stopp (Strg+.)">■ Stopp</button>
+          <span id="status" class="status" role="status">Lädt …</span>
+          <span id="pending" class="pill" hidden title="Strg+Enter übernimmt die Änderungen">Änderungen nicht aktiv</span>
+        </div>
+        <div class="project">
+          <span id="project-name"></span>
+          <span id="project-dirty" hidden title="Nicht gespeichert">●</span>
+        </div>
+        <div class="file-actions">
+          <span id="download-status" class="status"></span>
+          <button id="btn-new" title="Neu (Strg+N)">Neu</button>
+          <button id="btn-open" title="Öffnen (Strg+O)">Öffnen</button>
+          <button id="btn-save" title="Speichern (Strg+S)">Speichern</button>
+          <button id="btn-export" title="Als WAV exportieren (Strg+E)">WAV</button>
+        </div>
+      </header>
+      <div id="body">
+        <nav id="rail" aria-label="Seitenleiste"></nav>
+        <aside id="sidebar"></aside>
+        <main id="main">
+          <div id="editor-wrap">
+            <canvas id="test-canvas"></canvas>
+            <div id="editor"></div>
+          </div>
+          <div id="error-bar" role="alert" hidden></div>
+          <section id="console" hidden>
+            <div class="console-head">
+              <strong>Konsole</strong>
+              <button id="btn-console-clear" class="mini-btn">Leeren</button>
+              <button id="btn-console-close" class="mini-btn">Schließen</button>
+            </div>
+            <div id="console-lines"></div>
+          </section>
+        </main>
+      </div>
+      <footer id="footer">
+        <span id="cursor-pos"></span>
+        <span class="hint">Strg+Enter spielen · Strg+. stopp · Strg+Leertaste vervollständigen · F1 Doku zum Wort</span>
+        <button id="ai-status" class="link-btn" title="Einstellungen der KI-Vorschläge"></button>
+        <button id="btn-console" class="link-btn">Konsole</button>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

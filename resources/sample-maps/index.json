@@ -1,0 +1,84 @@
+[
+  {
+    "id": "uzu-drumkit",
+    "name": "Uzu Drumkit",
+    "description": "Das Standard-Drumkit von strudel.cc (bd, sd, hh, cp, ...). Fest in der App enthalten.",
+    "license": "siehe tidalcycles/uzu-drumkit",
+    "bundled": true,
+    "category": "drums",
+    "repo": "tidalcycles/uzu-drumkit",
+    "remoteBase": "https://raw.githubusercontent.com/tidalcycles/uzu-drumkit/main/",
+    "fileCount": 41,
+    "bytes": 2639232
+  },
+  {
+    "id": "piano",
+    "name": "Salamander Piano",
+    "description": "Konzertflügel über alle Oktaven. Fest in der App enthalten.",
+    "license": "CC-BY 3.0 (Salamander Grand Piano)",
+    "bundled": true,
+    "category": "instruments",
+    "repo": "felixroos/dough-samples",
+    "remoteBase": "https://raw.githubusercontent.com/felixroos/dough-samples/main/piano/",
+    "fileCount": 29,
+    "bytes": 5479076
+  },
+  {
+    "id": "mridangam",
+    "name": "Mridangam",
+    "description": "Südindische Trommel.",
+    "license": "siehe yaxu/mrid",
+    "recommended": true,
+    "category": "drums",
+    "repo": "yaxu/mrid",
+    "remoteBase": "https://raw.githubusercontent.com/yaxu/mrid/main/",
+    "fileCount": 131,
+    "bytes": 39720132
+  },
+  {
+    "id": "drum-machines",
+    "name": "Tidal Drum Machines",
+    "description": "Über 70 klassische Drumcomputer, z. B. TR-808, TR-909, LinnDrum. Nutzung mit .bank(\"RolandTR909\").",
+    "license": "siehe ritchse/tidal-drum-machines",
+    "recommended": true,
+    "category": "machines",
+    "repo": "ritchse/tidal-drum-machines",
+    "remoteBase": "https://raw.githubusercontent.com/ritchse/tidal-drum-machines/main/machines/",
+    "fileCount": 2348,
+    "bytes": 187114240
+  },
+  {
+    "id": "dirt-samples",
+    "name": "Dirt-Samples",
+    "description": "Die komplette TidalCycles-Bibliothek: Breaks, Bässe, Stimmen, Foley und vieles mehr.",
+    "license": "siehe tidalcycles/dirt-samples",
+    "recommended": true,
+    "category": "samples",
+    "repo": "tidalcycles/dirt-samples",
+    "remoteBase": "https://raw.githubusercontent.com/tidalcycles/Dirt-Samples/master/",
+    "fileCount": 2038,
+    "bytes": 233409731
+  },
+  {
+    "id": "vcsl",
+    "name": "VCSL Orchester",
+    "description": "Versilian Community Sample Library: Orchester-, Volks- und Perkussionsinstrumente.",
+    "license": "CC0",
+    "category": "instruments",
+    "repo": "sgossner/VCSL",
+    "remoteBase": "https://raw.githubusercontent.com/sgossner/VCSL/master/",
+    "fileCount": 1908,
+    "bytes": 2592286108
+  },
+  {
+    "id": "soundfonts",
+    "name": "GM-Soundfonts",
+    "description": "Alle General-MIDI-Instrumente (gm_piano, gm_violin, ...) in mehreren Varianten.",
+    "license": "je nach Soundfont, siehe felixroos/webaudiofontdata",
+    "remoteBase": "https://felixroos.github.io/webaudiofontdata/sound/",
+    "category": "instruments",
+    "repo": "felixroos/webaudiofontdata",
+    "fileCount": 869,
+    "bytes": 144553537
+  }
+]
